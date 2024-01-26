@@ -3,6 +3,8 @@
 #### Build and run Docker
 
 ```bash
+$ cd src/
+
 $ docker build --tag backend-golang:gin .
 
 $ docker run --publish 8080:8080  backend-golang:gin
