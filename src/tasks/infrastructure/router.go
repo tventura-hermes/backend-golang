@@ -13,7 +13,6 @@ func (a *App) CreateRoutes() {
 
 	router.GET("/tasks")
 	router.POST("/tasks", CreateTask)
-
 	a.Routes = router
 }
 

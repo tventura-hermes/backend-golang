@@ -1,11 +1,24 @@
 package application
 
-import "backend-golang-gin/tasks/domain"
+import (
+	"backend-golang-gin/tasks/domain"
+	"fmt"
+	"net/http"
 
-var taskList = []domain.Task{
-	{ID: "65b41bc5fc13ae2b9eb4c76e", Name: "Tarea importante", Status: "Doing"},
-}
+	"github.com/gin-gonic/gin"
+)
 
-func AddTask(ir domain.TaskInterface) {
-	ir.DataTask(taskList)
+var GlobalData domain.Task
+
+func CreateTask(c *gin.Context) {
+	var newTask domain.Task
+
+	if err := c.BindJSON(&newTask); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	fmt.Println(newTask)
+
+	GlobalData = newTask
 }
