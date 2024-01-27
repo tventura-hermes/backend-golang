@@ -8,7 +8,7 @@ WORKDIR /go/src/github.com/tventura-hermes/backend-golang-gin
 
 COPY . .
 
-RUN go mod init backend-golang-gin ;  go get -u github.com/gin-gonic/gin
+RUN go mod init backend-golang-gin ;  go get -u github.com/gin-gonic/gin ; go get github.com/lib/pq
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /backend-golang-gin
 

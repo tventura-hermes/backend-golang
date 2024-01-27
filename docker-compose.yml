@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres-db
+    ports:
+      - 5433:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=backend-golang-gin
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - api-postgres
+
+  go-api:
+    container_name: go-api
+    build: 
+      context: ./src 
+      dockerfile: Dockerfile 
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - api-postgres
+  
+networks:
+  api-postgres:
+    driver: bridge

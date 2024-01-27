@@ -11,7 +11,7 @@ type App struct {
 func (a *App) CreateRoutes() {
 	router := gin.Default()
 
-	router.GET("/tasks")
+	router.GET("/tasks", Connect)
 	router.POST("/tasks", CreateTask)
 	a.Routes = router
 }
