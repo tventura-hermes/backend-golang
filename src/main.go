@@ -1,9 +1,13 @@
 package main
 
-import "backend-golang-gin/tasks/infrastructure"
+import "backend-golang-gin/app"
 
 func main() {
-	var app infrastructure.App
+	var app app.App
+
+	app.Connect()
+
 	app.CreateRoutes()
+
 	app.Run()
 }

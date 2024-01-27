@@ -1,18 +1,25 @@
-package infrastructure
+package app
 
 import (
+	"backend-golang-gin/tasks/infrastructure"
+	"database/sql"
+
 	"github.com/gin-gonic/gin"
 )
 
 type App struct {
 	Routes *gin.Engine
+	DB     *sql.DB
 }
 
 func (a *App) CreateRoutes() {
 	router := gin.Default()
 
-	router.GET("/tasks", Connect)
-	router.POST("/tasks", CreateTask)
+	it := infrastructure.NewTaskInfrastructure(a.DB)
+
+	router.GET("/tasks")
+	router.POST("/tasks", it.CreateTask)
+
 	a.Routes = router
 }
 

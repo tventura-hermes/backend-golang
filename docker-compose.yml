@@ -8,13 +8,14 @@ services:
       - 5433:5432
     restart: always
     environment:
-      - POSTGRES_DB=backend-golang-gin
+      - POSTGRES_DB=backend_golang_gin
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234
-    volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - api-postgres
+    volumes:
+      - ~/postgres-volumes/data1:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d/
 
   go-api:
     container_name: go-api

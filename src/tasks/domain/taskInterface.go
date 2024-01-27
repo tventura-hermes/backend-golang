@@ -1,5 +1,8 @@
 package domain
 
+import "github.com/gin-gonic/gin"
+
 type TaskInterface interface {
-	DataTask([]Task)
+	InsertTask(post Task) bool
+	CreateTask(c *gin.Context)
 }
