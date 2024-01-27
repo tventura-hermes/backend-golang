@@ -1,7 +1,11 @@
 package application
 
-import "github.com/gin-gonic/gin"
+import (
+	"backend-golang-gin/tasks/domain"
+
+	"github.com/gin-gonic/gin"
+)
 
 type TaskApplicationInterface interface {
-	InsertTask(c *gin.Context)
+	InsertTask(c *gin.Context) domain.Task
 }

@@ -18,7 +18,7 @@ func (a *App) CreateRoutes() {
 	it := infrastructure.NewTaskInfrastructure(a.DB)
 
 	router.GET("/tasks")
-	router.POST("/tasks", it.CreateTask)
+	router.POST("/tasks", it.ResponseTask)
 
 	a.Routes = router
 }
