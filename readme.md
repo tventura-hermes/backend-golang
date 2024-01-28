@@ -1,11 +1,9 @@
 ## How to use
 
-#### Build and run Docker
+#### Start services
 
 ```bash
-$ docker-compose build 
-
-$ docker-compose up
+$ docker-compose up -d --build
 ```
 
 #### Postgres Container Access
@@ -14,4 +12,10 @@ $ docker-compose up
 $ docker exec -it postgres-db /bin/bash
 
 $ psql -U postgres -d backend_golang_gin
+```
+
+#### Stop services
+
+```bash
+$ docker-compose down
 ```
