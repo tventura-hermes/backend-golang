@@ -19,6 +19,8 @@ func (a *App) CreateRoutes() {
 
 	router.GET("/tasks", it.SelectAllTask)
 	router.POST("/tasks", it.InsertTask)
+	router.POST("/tasks/:id", it.UpdateTask)
+	router.GET("/tasks/:id", it.DeleteTask)
 
 	a.Routes = router
 }

@@ -8,4 +8,6 @@ import (
 
 type TaskApplicationInterface interface {
 	InsertTask(c *gin.Context) domain.Task
+	UpdateTask(c *gin.Context) domain.TaskUpdate
+	DeleteTask(c *gin.Context) string
 }

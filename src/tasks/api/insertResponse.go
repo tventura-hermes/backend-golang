@@ -5,7 +5,7 @@ import (
 )
 
 type ApiConfirmation struct {
-	Data     ConfirmationResponse `json:"data"`
+	Data     ConfirmationData     `json:"data"`
 	Included ConfirmationIncluded `json:"included"`
 }
 
