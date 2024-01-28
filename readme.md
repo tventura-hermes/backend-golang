@@ -12,4 +12,6 @@ $ docker-compose up
 
 ```bash
 $ docker exec -it postgres-db /bin/bash
+
+$ psql -U postgres -d backend_golang_gin
 ```
