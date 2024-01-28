@@ -2,20 +2,14 @@ package infrastructure
 
 import (
 	"backend-golang-gin/tasks/api"
-	"backend-golang-gin/tasks/application"
+	"backend-golang-gin/tasks/domain"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-func (m *TaskInfrastructure) ResponseTask(c *gin.Context) {
-
-	var ta application.TaskApplication
-
-	TaskData := ta.InsertTask(c)
-
-	response := m.InsertTask(TaskData)
+func insertResponseTask(TaskData *domain.Task, c *gin.Context) {
 
 	jsonapi := api.ApiConfirmation{
 		Data: api.ConfirmationResponse{
@@ -46,9 +40,23 @@ func (m *TaskInfrastructure) ResponseTask(c *gin.Context) {
 		},
 	}
 
-	if response {
-		c.JSON(http.StatusCreated, jsonapi)
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Dato no insertado"})
+	c.JSON(http.StatusCreated, jsonapi)
+}
+
+func selectAllResponseTask(data []domain.Task, c *gin.Context) {
+	var jsonapi []api.SelectResponse
+
+	for _, a := range data {
+		format := api.SelectResponse{
+			Type: "task",
+			ID:   a.ID,
+			Attributes: api.ConfirmationIncludedAttributes{
+				Name:   a.Name,
+				Status: a.Status,
+			},
+		}
+		jsonapi = append(jsonapi, format)
 	}
+
+	c.JSON(http.StatusFound, gin.H{"data": jsonapi})
 }
