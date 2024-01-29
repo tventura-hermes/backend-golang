@@ -12,7 +12,7 @@ RUN go mod init backend-golang-gin ;  go get -u github.com/gin-gonic/gin ; go ge
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /backend-golang-gin
 
-FROM gcr.io/distroless/base-debian11 AS release-stage
+FROM debian:11 AS release-stage
 
 SHELL ["/bin/bash", "-c"]
 
@@ -21,7 +21,5 @@ WORKDIR /
 COPY --from=bin-stage /backend-golang-gin /backend-golang-gin
 
 EXPOSE 8080
-
-USER nonroot:nonroot
 
 ENTRYPOINT ["/backend-golang-gin"]
